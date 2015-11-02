@@ -1,0 +1,140 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=6952, tid=12308
+#
+# JRE version:  (7.0_80-b15) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.80-b11 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000000cce000):  JavaThread "Unknown thread" [_thread_in_vm, id=12308, stack(0x00000000011f0000,0x00000000012f0000)]
+
+Stack: [0x00000000011f0000,0x00000000012f0000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000000cce000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=12308, stack(0x00000000011f0000,0x00000000012f0000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 18944K, used 327K [0x00000000eaa80000, 0x00000000ebf80000, 0x0000000100000000)
+  eden space 16384K, 2% used [0x00000000eaa80000,0x00000000eaad1f10,0x00000000eba80000)
+  from space 2560K, 0% used [0x00000000ebd00000,0x00000000ebd00000,0x00000000ebf80000)
+  to   space 2560K, 0% used [0x00000000eba80000,0x00000000eba80000,0x00000000ebd00000)
+ ParOldGen       total 42496K, used 0K [0x00000000c0000000, 0x00000000c2980000, 0x00000000eaa80000)
+  object space 42496K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c2980000)
+ PSPermGen       total 21504K, used 697K [0x00000000bae00000, 0x00000000bc300000, 0x00000000c0000000)
+  object space 21504K, 3% used [0x00000000bae00000,0x00000000baeae5c8,0x00000000bc300000)
+
+Card table byte_map: [0x00000000014b0000,0x00000000016e0000] byte_map_base: 0x0000000000ed9000
+
+Polling page: 0x0000000000950000
+
+Code Cache  [0x0000000003400000, 0x0000000003670000, 0x0000000006400000)
+ total_blobs=38 nmethods=0 adapters=20 free_code_cache=48889Kb largest_free_block=50062528
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.016 loading class 0x0000000001337750
+Event: 0.016 loading class 0x0000000001337750 done
+Event: 0.016 loading class 0x00000000013377a0
+Event: 0.016 loading class 0x00000000013377a0 done
+Event: 0.016 loading class 0x00000000013377f0
+Event: 0.016 loading class 0x00000000013377f0 done
+Event: 0.016 loading class 0x0000000001338570
+Event: 0.017 loading class 0x0000000001338570 done
+Event: 0.017 loading class 0x0000000001338190
+Event: 0.017 loading class 0x0000000001338190 done
+
+
+Dynamic libraries:
+0x00007ff699550000 - 0x00007ff699583000 	C:\Program Files\Java\jdk1.7.0_80\bin\java.exe
+0x00007ff9ef530000 - 0x00007ff9ef6f1000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ff9ef360000 - 0x00007ff9ef40d000 	C:\WINDOWS\system32\KERNEL32.DLL
+0x00007ff9eca00000 - 0x00007ff9ecbdd000 	C:\WINDOWS\system32\KERNELBASE.dll
+0x00007ff9ef410000 - 0x00007ff9ef4b6000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x00007ff9ecd30000 - 0x00007ff9ecdcd000 	C:\WINDOWS\system32\msvcrt.dll
+0x00007ff9ecef0000 - 0x00007ff9ecf4b000 	C:\WINDOWS\system32\sechost.dll
+0x00007ff9eeca0000 - 0x00007ff9eedc6000 	C:\WINDOWS\system32\RPCRT4.dll
+0x00007ff9ef0f0000 - 0x00007ff9ef23e000 	C:\WINDOWS\system32\USER32.dll
+0x00007ff9ee640000 - 0x00007ff9ee7c6000 	C:\WINDOWS\system32\GDI32.dll
+0x00007ff9ce990000 - 0x00007ff9cec04000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.10240.16384_none_f41f7b285750ef43\COMCTL32.dll
+0x00007ff9eeee0000 - 0x00007ff9eef16000 	C:\WINDOWS\system32\IMM32.DLL
+0x00007ff9ee7e0000 - 0x00007ff9ee93c000 	C:\WINDOWS\system32\MSCTF.dll
+0x0000000060f60000 - 0x0000000061032000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\msvcr100.dll
+0x00000000613f0000 - 0x0000000061bc9000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\server\jvm.dll
+0x00007ff9ecf50000 - 0x00007ff9ecf58000 	C:\WINDOWS\system32\PSAPI.DLL
+0x00007ff9e9dc0000 - 0x00007ff9e9de3000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ff9e1660000 - 0x00007ff9e1669000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ff9ef4c0000 - 0x00007ff9ef529000 	C:\WINDOWS\system32\WS2_32.dll
+0x00007ff9eebc0000 - 0x00007ff9eebc8000 	C:\WINDOWS\system32\NSI.dll
+0x0000000001010000 - 0x000000000103c000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007ff9ec210000 - 0x00007ff9ec254000 	C:\WINDOWS\system32\cfgmgr32.dll
+0x00007ff9ea8b0000 - 0x00007ff9ea8d7000 	C:\WINDOWS\SYSTEM32\DEVOBJ.dll
+0x00000000613e0000 - 0x00000000613ef000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\verify.dll
+0x00000000613b0000 - 0x00000000613d8000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\java.dll
+0x0000000061390000 - 0x00000000613a6000 	C:\Program Files\Java\jdk1.7.0_80\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Xmx1024M -Dfile.encoding=windows-1252 -Duser.country=BR -Duser.language=pt -Duser.variant 
+java_command: com.android.dx.command.Main --dex --output C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\dex\debug C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\classes\debug C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-2b1ca2f80f04ee0a9903125379bc3b972be275d4.jar C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-1ec0dea010e290eb0ffc13a57682fcb70d3c8541.jar C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\pre-dexed\debug\classes-89d3186dbff72b57654ced9a002d910061eccf9c.jar C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\pre-dexed\debug\classes-f79e3676f4cefa4538500dfac09bae9e100bbd6e.jar C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\pre-dexed\debug\classes-0c9caa44825eeea24b31dfa582c5438da8281b68.jar C:\Sistemas\MobileShoppingAssistant-sample-master\APMonitor\app\build\intermediates\pre-dexed\debug\classes-6fa5ca9f8c343b64ca37dfd6e327d718e754a052.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Borland\Delphi7\Bin;C:\Program Files (x86)\Borland\Delphi7\Projects\Bpl\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\Program Files (x86)\MySQL\MySQL Utilities\;C:\Program Files (x86)\Google\Google Apps Migration\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Microsoft SQL Server Migration Assistant for MySQL\bin\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT
+USERNAME=Placido
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, erms, ht, tsc, tscinvbit, tscinv
+
+Memory: 4k page, physical 4098760k(254404k free), swap 10804000k(5752k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.80-b11) for windows-amd64 JRE (1.7.0_80-b15), built on Apr 10 2015 11:26:34 by "java_re" with unknown MS VC++:1600
+
+time: Fri Oct 30 10:58:46 2015
+elapsed time: 0 seconds
+
