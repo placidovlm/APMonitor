@@ -1,16 +1,8 @@
 <resources>
     <string name="app_name">APMonitor</string>
     <string name="action_settings">Settings</string>
+    <string name="action_share">share</string>
 
-
-    <string-array name="sites_array">
-            <item>Intercity</item>
-            <item>Caesar Bussiness</item>
-            <item>Go Inn</item>
-            <item>Comfort</item>
-            <item>Sleep Inn</item>
-            <item>Quality</item>
-    </string-array>
 
 
 </resources>

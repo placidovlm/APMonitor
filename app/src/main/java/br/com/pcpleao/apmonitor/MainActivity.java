@@ -1,6 +1,7 @@
 package br.com.pcpleao.apmonitor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ShareActionProvider;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String mStatus = "";
     private AccessPointAdapter mAccessPointAdapter;
-
+    private String mShareText = "Nenhum AP monitorado ainda !";
+    private Spinner spinner1;
     private ProgressBar mProgress;
     private int mProgressStatus = 0;
+    public String mSite = "cbmam";
 
 
     AccessPoint ap1 = new AccessPoint("192.168.0.1", "Arris Router", null, "");
@@ -89,12 +93,18 @@ public class MainActivity extends AppCompatActivity {
             return item;
         }
 
+        protected void onPreExecute(){
+            mShareText = "Acess point que não respondem : " + "\n";
+        }
 
         protected void onPostExecute(AccessPoint result) {
             //Toast toast = Toast.makeText(getApplicationContext(), result.ipAdress+" -> "+result.status,Toast.LENGTH_SHORT);
             //toast.show();
             mProgressStatus++;
             mProgress.setProgress(mProgressStatus);
+            if(result.status == "dead") {
+                mShareText = mShareText + result.hostName + " " + result.ipAdress + " " + result.location + "\n";
+            }
             mAccessPointAdapter.notifyDataSetChanged();
 
         }
@@ -111,35 +121,34 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
-                for (int i=0 ; i< mAccessPointAdapter.getCount() ; i++){
+                for (int i = 0; i < mAccessPointAdapter.getCount(); i++) {
                     new PingAP().execute(i);
-                    //apItem.status = mStatus;
-                    //accessPointArray.set(i,apItem);
                 }
-                //mAccessPointAdapter.notifyDataSetChanged();
+
 
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.site_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.sites_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
 
-        mAccessPointAdapter = new AccessPointAdapter(this,accessPointArray);
+        spinner1 = (Spinner) findViewById(R.id.site_spinner);
+        List<String> list = new ArrayList<String>();
+        list.add("ICPMAO");
+        list.add("CBMAM");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource
+                (android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(dataAdapter);
+        // Spinner item selection Listener
+        addListenerOnSpinnerItemSelection();
+
+
+        mAccessPointAdapter = new AccessPointAdapter(this, accessPointArray);
+
         LoadAPTask loadAP = new LoadAPTask();
         loadAP.execute();
         ListView listView = (ListView) findViewById(R.id.listViewAP);
@@ -147,12 +156,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Add spinner data
+    public void addListenerOnSpinnerItemSelection() {
+        spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -165,6 +183,17 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
+        if (id == R.id.action_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, mShareText);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+            return true;
+        }
+
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -273,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 // Construct the URL for the themoviedb query
 
-                final String MOVIES_BASE_URL = "https://couchdb-430337.smileupps.com/" + "ap_icpmao" + "/_design/list/_view/list";
+                final String MOVIES_BASE_URL = "https://couchdb-430337.smileupps.com/ap_" + mSite + "/_design/list/_view/list";
 
                 Uri builtUri = Uri.parse(MOVIES_BASE_URL).buildUpon().build();
                 URL url = new URL(builtUri.toString());
@@ -332,13 +361,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            //mSite = spinner1.getSelectedItem().toString();
+            Toast toast = Toast.makeText(getApplicationContext(), "Carregando lista de AP de " + mSite, Toast.LENGTH_SHORT);
+            toast.show();
+
+        }
+
+
+
+        @Override
         protected void onPostExecute(AccessPoint[] result) {
             if (result != null) {
                 mAccessPointAdapter.clear();
-                for(AccessPoint movieItem : result) {
+
+                for (AccessPoint movieItem : result) {
+
                     mAccessPointAdapter.add(movieItem);
                 }
-            }
+                Toast toast = Toast.makeText(getApplicationContext(), "AP list loaded successful!", Toast.LENGTH_SHORT);
+                toast.show();
+            } else
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error at loading AP list !", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
         }
 
 
