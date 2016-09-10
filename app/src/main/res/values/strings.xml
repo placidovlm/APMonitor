@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">APMonitor</string>
+    <string name="app_name">Impeachment Já</string>
     <string name="action_settings">Settings</string>
     <string name="action_share">share</string>
 
+    <string name="title_activity_detail">Impeachment Já</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="bUTTOMeNVIAR">ENVIAR\nEMAILS</string>
 
 
 </resources>

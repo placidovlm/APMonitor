@@ -7,32 +7,95 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main" tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right">
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SENADO FEDERAL"
+        android:id="@+id/textView3"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_horizontal" />
 
-        <Spinner
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/site_spinner"
-            android:spinnerMode="dropdown"
-            android:layout_gravity="right" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:gravity="center_vertical|top"
+        android:layout_gravity="top">
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/progressBar" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CÂMARA"
+                android:id="@+id/radioButtonCamara"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="#388e3c" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SENADO"
+                android:id="@+id/radioButtonSenado"
+                android:onClick="onRadioButtonClicked"
+                android:buttonTint="#388e3c" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/partido_spinner"
+                android:spinnerMode="dropdown"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="4dp"
+                android:minWidth="?android:attr/listPreferredItemHeight"
+                android:nestedScrollingEnabled="false" />
+
+            <Spinner
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/uf_spinner"
+                android:spinnerMode="dropdown"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:minWidth="?android:attr/listPreferredItemHeight"
+                android:nestedScrollingEnabled="false" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/bUTTOMeNVIAR"
+            android:id="@+id/button_enviar"
+            android:singleLine="false"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="10dp" />
+
     </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="451dp"
-        android:id="@+id/listViewAP" />
+        android:layout_height="match_parent"
+        android:id="@+id/listViewAP"
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout>

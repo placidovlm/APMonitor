@@ -1,4 +1,4 @@
-package br.com.pcpleao.apmonitor;
+package br.com.pcpleao.meudeputadofederal;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
